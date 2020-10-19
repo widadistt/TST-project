@@ -25,13 +25,13 @@
     </style>
     <script>
         // define the callAPI function that takes a first name and last name as parameters
-        var callAPI = (firstName,lastName)=>{
+        var callAPI = (first,last)=>{
             // instantiate a headers object
             var myHeaders = new Headers();
             // add content type header to object
             myHeaders.append("Content-Type", "application/json");
             // using built in JSON utility package turn object to string and store in a variable
-            var raw = JSON.stringify({"firstName":firstName,"lastName":lastName});
+            var raw = JSON.stringify({"firstName":first,"lastName":last});
             // create a JSON object with parameters for API call and store in a variable
             var requestOptions = {
                 method: 'POST',
@@ -40,7 +40,7 @@
                 redirect: 'follow'
             };
             // make API call with parameters and use promises to get response
-            fetch("https://tstbackendfunc048.azurewebsites.net/api/HttpTriggerForTST048", requestOptions)
+            fetch("https://functionappisti.azurewebsites.net/api/Hello", requestOptions)
             .then(response => response.text())
             .then(result => alert(JSON.parse(result).name))
             .catch(error => console.log('error', error));
@@ -50,12 +50,12 @@
 <body>
 	<h3>May I know your name?</h3>
     <form>
-        <label>First Name :</label>
-        <input type="text" id="fName">
-        <label>Last Name :</label>
-        <input type="text" id="lName">
+        <label>First Name:</label>
+        <input type="text" id="first">
+        <label>Last Name:</label>
+        <input type="text" id="last">
         <!-- set button onClick method to call function we defined passing input values as parameters -->
-        <button type="button" onclick="callAPI(document.getElementById('fName').value,document.getElementById('lName').value)">Submit</button>
+        <button type="button" onclick="callAPI(document.getElementById('first').value,document.getElementById('last').value)">Submit</button>
     </form>
 </body>
 </html>
