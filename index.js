@@ -1,6 +1,6 @@
 const CosmosClient = require('@azure/cosmos').CosmosClient
 
-const client = new CosmosClient(process.env.COSMOS_API_PRI_STR)
+const client = new CosmosClient(process.env.cosmosisti)
 const database = client.database('dbisti')
 const container = database.container('dbname')
 
